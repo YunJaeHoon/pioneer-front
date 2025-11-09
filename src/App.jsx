@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import style from "./AppStyle.module.css"
 
 function App()
 {
@@ -14,7 +15,8 @@ function App()
 
     return (
         <div>
-            <h1>프론트엔드 테스트</h1>
+            <div id={style["title"]}>서부의 바람은, 손끝으로 분다.</div>
+            <div id={style["content"]}>이메일을 입력하세요.</div>
         </div>
     );
 }
