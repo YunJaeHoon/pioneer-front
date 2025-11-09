@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import style from "./AppStyle.module.css"
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './page/HomePage';
+import Header from './component/Header';
+import Footer from './component/Footer';
 
 function App()
 {
@@ -14,9 +18,16 @@ function App()
     }, []);  
 
     return (
-        <div>
-            <div id={style["title"]}>서부의 바람은, 손끝으로 분다.</div>
-            <div id={style["content"]}>이메일을 입력하세요.</div>
+        <div id={style["container"]}>
+
+            <Header />
+            
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+            </Routes>
+
+            <Footer />
+
         </div>
     );
 }
