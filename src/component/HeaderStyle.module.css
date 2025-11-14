@@ -1,5 +1,6 @@
 #main-container {
     width: 100%;
+    min-width: 1300px;
     height: 130px;
     position: fixed;
     top: 20px;
@@ -53,6 +54,7 @@
     text-decoration: none;
 
     margin-right: 60px;
+    flex-shrink: 0;
 }
 
 .link-text {

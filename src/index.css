@@ -5,9 +5,30 @@
 
 @font-face {
   font-family: 'pioneer-content';
-  src: url('./font/SourceHanSerifK-VF.ttf');
+  src: url('./font/PretendardVariable.ttf');
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
 }
+
+input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 1000px white inset;
+	box-shadow: 0 0 0 1000px white inset;
+  }
+
+input:focus {
+  outline: none;
+}
+
+input::-ms-clear { display: none; }

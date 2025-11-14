@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./HeaderStyle.module.css"
 
@@ -5,8 +6,6 @@ import logo from "../asset/logo.svg";
 import loginIcon from "../asset/login-icon.svg";
 import linkLeftParentheses from "../asset/link-left-parentheses.svg";
 import linkRightParentheses from "../asset/link-right-parentheses.svg";
-import { UserRoleContext } from "../App";
-import { useContext } from "react";
 
 function HeaderLink({ to, label })
 {
@@ -21,8 +20,8 @@ function HeaderLink({ to, label })
 
 function Header()
 {
-    // context
-    const { userRole } = useContext(UserRoleContext);
+    // state
+    const [hasLogin, setHasLogin] = useState(false);
 
     return (
         <div id={style["main-container"]}>
@@ -37,7 +36,7 @@ function Header()
             </div>
             <div id={style["right-container"]}>
                 {
-                    userRole === undefined ? (
+                    !hasLogin ? (
                         <Link to="/login">
                             <img src={loginIcon} id={style["login-icon"]} className={style["btn"]}/>
                         </Link>

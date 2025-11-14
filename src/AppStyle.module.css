@@ -1,8 +1,13 @@
 #container {
     min-height: 100vh;
+    min-width: 1300px;
 
     display: flex;
     flex-direction: column;
 
-    background-color: #ffd2b2;
+    background-color: #F8E9CA;
+}
+
+#content {
+    margin-top: 150px;
 }
