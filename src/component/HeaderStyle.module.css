@@ -43,7 +43,7 @@
 
 .btn:hover {
     cursor: pointer;
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
 .link-container {
@@ -52,7 +52,7 @@
     align-items: center;
     text-decoration: none;
 
-    margin-right: 50px;
+    margin-right: 60px;
 }
 
 .link-text {
@@ -65,7 +65,7 @@
 }
 
 .link-decorator {
-    width: 16px;
+    width: 18px;
 
     opacity: 0;
     transition: opacity 0.1s ease-in-out;
