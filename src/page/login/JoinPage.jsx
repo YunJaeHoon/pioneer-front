@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import style from "./JoinPageStyle.module.css"
 
+import westernImage from "../../asset/join-image.svg";
 import showPasswordIcon from "../../asset/show-password-icon.svg";
 import unshowPasswordIcon from "../../asset/unshow-password-icon.svg";
 import checkIcon from "../../asset/check-icon.svg";
@@ -178,6 +179,7 @@ function JoinPage()
 
     return (
         <div id={style["container"]}>
+            <img src={westernImage} id={style["main-image"]}/>
             <form className={style["join-form"]} onSubmit={join}>
 
                 <div className={style["input-title"]}>이메일</div>
