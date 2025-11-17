@@ -6,6 +6,7 @@ import HomePage from './page/home/HomePage';
 import Header from './component/Header';
 import Footer from './component/Footer';
 import LoginPage from './page/login/LoginPage';
+import JoinPage from './page/login/JoinPage';
 
 function App()
 {
@@ -27,6 +28,7 @@ function App()
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/join" element={<JoinPage />} />
                 </Routes>
             </div>
 

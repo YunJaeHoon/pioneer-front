@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import style from "./LoginPageStyle.module.css"
 
 import starIcon from "../../asset/star-icon.svg";
@@ -7,7 +8,6 @@ import emailIcon from "../../asset/email-icon.svg";
 import passwordIcon from "../../asset/password-icon.svg";
 import showPasswordIcon from "../../asset/show-password-icon.svg";
 import unshowPasswordIcon from "../../asset/unshow-password-icon.svg";
-import axios from "axios";
 
 function LoginPage()
 {
@@ -20,8 +20,14 @@ function LoginPage()
     const [isWaiting, setIsWaiting] = useState(false);          // 응답 기다림 여부
 
     // 로그인
-    function login(e) {
+    function login(e)
+    {
         e.preventDefault();
+
+        if(isWaiting) {
+            return;
+        }
+        
         setIsWaiting(true);
 
         axios.post(
@@ -73,7 +79,7 @@ function LoginPage()
                             setEmail(filteredValue);
                         }}
                         required
-                    ></input>
+                    />
                 </div>
                 <div className={style["input-container"]}>
                     <img src={passwordIcon} className={style["input-icon"]}/>
@@ -90,21 +96,21 @@ function LoginPage()
                     />
                     <button
                         type="button"
-                        className={style["password-toggle"]}
+                        id={style["password-toggle-btn"]}
                         onClick={() => {
                             setShowPassword(!showPassword);
                         }}
                     >
-                        <img src={showPassword ? showPasswordIcon : unshowPasswordIcon} className={style["show-password-icon"]}/>
+                        <img src={showPassword ? showPasswordIcon : unshowPasswordIcon} id={style["show-password-icon"]}/>
                     </button>
                 </div>
                 
-                <button type="submit" className={style["login-button"]} disabled={isWaiting ? true : false}>
+                <button type="submit" id={style["login-btn"]} disabled={isWaiting}>
                     로그인
                 </button>
 
-                <div className={style["forgot-password-container"]}>
-                    <Link to="/forgot-password" className={style["forgot-password-link"]}>
+                <div id={style["forgot-password-container"]}>
+                    <Link to="/forgot-password" id={style["forgot-password-link"]}>
                         비밀번호를 잊으셨나요?
                     </Link>
                 </div>
@@ -116,11 +122,11 @@ function LoginPage()
                 <div className={style["or-line"]}></div>
             </div>
 
-            <Link to="/join" className={style["join-button"]}>
+            <Link to="/join" id={style["join-btn"]}>
                 회원가입
             </Link>
         </div>
     );
 }
 
-export default LoginPage
+export default LoginPage;

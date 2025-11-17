@@ -63,8 +63,6 @@
 
 .input::placeholder {
     color: #999999;
-
-    padding-left: 2px;
 }
 
 .password-container .input {
@@ -72,7 +70,7 @@
     padding-right: 80px;
 }
 
-.password-toggle {
+#password-toggle-btn {
     position: absolute;
     right: 5px;
 
@@ -91,11 +89,11 @@
     border: none;
 }
 
-.password-toggle:hover {
+#password-toggle-btn:hover {
     color: #000;
 }
 
-.login-button {
+#login-btn {
     width: 100%;
     height: 50px;
     background-color: black;
@@ -113,11 +111,15 @@
     transition: all 0.1s;
 }
 
-.login-button:hover {
+#login-btn:hover {
     background-color: #333333;
 }
 
-.forgot-password-container {
+#login-btn:disabled {
+    cursor: wait;
+}
+
+#forgot-password-container {
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -125,17 +127,17 @@
     margin-top: 15px;
 }
 
-.forgot-password-link {
+#forgot-password-link {
     font-family: "pioneer-english";
     font-size: 16px;
     font-weight: 400;
-    color: #5c5c5c;
+    color: #3d3d3d;
     text-decoration: underline;
 
     transition: all 0.1s;
 }
 
-.forgot-password-link:hover {
+#forgot-password-link:hover {
     color: #000000;
 }
 
@@ -155,17 +157,17 @@
 
     display: inline-block;
 
-    border-top: 1px solid #616161
+    border-top: 1px solid #3d3d3d
 }
 
 #or-text {
     font-size: 14px;
     font-weight: 400;
     text-align: center;
-    color: #616161
+    color: #3d3d3d
 }
 
-.join-button {
+#join-btn {
     width: 450px;
     height: 50px;
     background-color: white;
@@ -182,10 +184,10 @@
     font-size: 22px;
     text-decoration: none;
 
-    border: 1px solid #000;
+    border: 1px solid black;
     border-radius: 4px;
 }
 
-.join-button:hover {
-    background-color: #f5f5f5;
+#join-btn:hover {
+    background-color: #ededed;
 }
