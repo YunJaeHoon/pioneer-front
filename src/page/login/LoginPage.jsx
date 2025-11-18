@@ -75,8 +75,7 @@ function LoginPage()
                         placeholder="이메일"
                         value={email}
                         onChange={(e)=>{
-                            const filteredValue = e.target.value.replace(/[가-힣ㄱ-ㅎㅏ-ㅣ]/g, '');
-                            setEmail(filteredValue);
+                            setEmail(e.target.value);
                         }}
                         required
                     />
@@ -89,8 +88,7 @@ function LoginPage()
                         placeholder="비밀번호"
                         value={password}
                         onChange={(e)=>{
-                            const filteredValue = e.target.value.replace(/[가-힣ㄱ-ㅎㅏ-ㅣ]/g, '');
-                            setPassword(filteredValue);
+                            setPassword(e.target.value);
                         }}
                         required
                     />

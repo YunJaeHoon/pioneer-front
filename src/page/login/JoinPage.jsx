@@ -190,8 +190,7 @@ function JoinPage()
                         placeholder="이메일"
                         value={email}
                         onChange={(e)=>{
-                            const filteredValue = e.target.value.replace(/[가-힣ㄱ-ㅎㅏ-ㅣ]/g, '');
-                            setEmail(filteredValue);
+                            setEmail(e.target.value);
                             setIsVerificationCodeSent(false);
                             setIsVerificationCodeChecked(false);
                         }}
@@ -244,10 +243,9 @@ function JoinPage()
                         placeholder="비밀번호"
                         value={password}
                         onChange={(e)=>{
-                            const filteredValue = e.target.value.replace(/[가-힣ㄱ-ㅎㅏ-ㅣ]/g, '');
-                            setPassword(filteredValue);
-                            setIsPasswordFormatValid(PASSWORD_REGEX.test(filteredValue));
-                            setIsPasswordChecked(filteredValue === passwordCheck);
+                            setPassword(e.target.value);
+                            setIsPasswordFormatValid(PASSWORD_REGEX.test(e.target.value));
+                            setIsPasswordChecked(e.target.value === passwordCheck);
                         }}
                         autoComplete="new-password"
                         required
@@ -269,9 +267,8 @@ function JoinPage()
                         placeholder="비밀번호 확인"
                         value={passwordCheck}
                         onChange={(e)=>{
-                            const filteredValue = e.target.value.replace(/[가-힣ㄱ-ㅎㅏ-ㅣ]/g, '');
-                            setPasswordCheck(filteredValue);
-                            setIsPasswordChecked(password === filteredValue);
+                            setPasswordCheck(e.target.value);
+                            setIsPasswordChecked(password === e.target.value);
                         }}
                         autoComplete="new-password"
                         required
@@ -295,9 +292,8 @@ function JoinPage()
                         placeholder="닉네임"
                         value={nickname}
                         onChange={(e)=>{
-                            const value = e.target.value;
-                            setNickname(value);
-                            setIsNicknameFormatValid(NICKNAME_REGEX.test(value));
+                            setNickname(e.target.value);
+                            setIsNicknameFormatValid(NICKNAME_REGEX.test(e.target.value));
                             setIsNicknameDuplicationChecked(false);
                         }}
                         autoComplete="new-password"

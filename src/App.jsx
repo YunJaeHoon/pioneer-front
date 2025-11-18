@@ -7,6 +7,7 @@ import Header from './component/Header';
 import Footer from './component/Footer';
 import LoginPage from './page/login/LoginPage';
 import JoinPage from './page/login/JoinPage';
+import ForgotPasswordPage from './page/login/ForgotPasswordPage';
 
 function App()
 {
@@ -29,6 +30,7 @@ function App()
                     <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/join" element={<JoinPage />} />
+                    <Route path="/forgot-password" element={<ForgotPasswordPage />} />
                 </Routes>
             </div>
 
