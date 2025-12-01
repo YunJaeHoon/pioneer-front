@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./HeaderStyle.module.css"
 
@@ -6,22 +6,26 @@ import logo from "../asset/logo.svg";
 import loginIcon from "../asset/login-icon.svg";
 import linkLeftParentheses from "../asset/link-left-parentheses.svg";
 import linkRightParentheses from "../asset/link-right-parentheses.svg";
-
-function HeaderLink({ to, label })
-{
-    return (
-        <Link to={to} className={style["link-container"]}>
-            <img src={linkLeftParentheses} className={style["link-decorator"]}/>
-            <div className={style["link-text"]}>{label}</div>
-            <img src={linkRightParentheses} className={style["link-decorator"]}/>
-        </Link>
-    );
-}
+import { sendApi } from "../util/apiUtil";
 
 function Header()
 {
     // state
     const [hasLogin, setHasLogin] = useState(false);
+
+    // 로그인 여부 확인
+    useEffect(() => {
+        async function checkLogin() {
+            try {
+                await sendApi("/test/role/user", "GET", null);
+                setHasLogin(true);
+            } catch {
+                setHasLogin(false);
+            }
+        };
+
+        checkLogin();
+    }, []);  
 
     return (
         <div id={style["main-container"]}>
@@ -46,6 +50,17 @@ function Header()
                 }
             </div>
         </div>
+    );
+}
+
+function HeaderLink({ to, label })
+{
+    return (
+        <Link to={to} className={style["link-container"]}>
+            <img src={linkLeftParentheses} className={style["link-decorator"]}/>
+            <div className={style["link-text"]}>{label}</div>
+            <img src={linkRightParentheses} className={style["link-decorator"]}/>
+        </Link>
     );
 }
 

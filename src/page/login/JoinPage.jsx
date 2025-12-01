@@ -35,11 +35,11 @@ function JoinPage()
 
     // 이메일 인증번호 타이머
     useEffect(() => {
-        if (!isVerificationCodeSent || isVerificationCodeChecked) {
+        if(!isVerificationCodeSent || isVerificationCodeChecked) {
             return;
         }
 
-        if (verificationCodeTimer <= 0) {
+        if(verificationCodeTimer <= 0) {
             setIsVerificationCodeSent(false);
             return;
         }

@@ -50,7 +50,7 @@ function LoginPage()
                 {
                     const accessToken = cookie.substring("access-token".length + 1);
 
-                    axios.defaults.headers.common['Authorization'] = "Bearer " + accessToken;
+                    window.localStorage.setItem("accessToken", accessToken);
 
                     navigate("/");
                     window.location.reload();
