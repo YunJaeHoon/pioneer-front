@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
-import axios from 'axios'
 import style from "./AppStyle.module.css"
 import { Route, Routes } from 'react-router-dom';
+import { apiRequest } from "./util/apiUtil";
+
 import HomePage from './page/home/HomePage';
 import Header from './component/Header';
 import Footer from './component/Footer';
@@ -14,9 +15,15 @@ function App()
     // 서버 연결 테스트
     useEffect(() => {
         async function testBackend() {
-            let response = await axios.get("/test/success");
-            console.log(response.data?.message);
-        }
+            try {
+                await apiRequest("/test/success", "GET", null);
+                console.log("백엔드 서버와 정상적으로 연결되었습니다.");
+            } catch(e) {
+                console.log(e);
+                alert(e.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+            }
+        };
+
         testBackend();
     }, []);  
 

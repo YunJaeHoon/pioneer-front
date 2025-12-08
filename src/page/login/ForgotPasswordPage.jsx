@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { apiRequest } from "../../util/apiUtil";
 import style from "./ForgotPasswordPageStyle.module.css"
 
 import cactusIcon from "../../asset/cactus-icon.svg";
@@ -25,20 +25,18 @@ function ForgotPasswordPage()
         
         setIsWaiting(true);
 
-        axios.post(
-            "/user/reset-password",
-            {
-                "email": email
-            }
-        ).then((response) => {
+        try {
+            apiRequest("/user/reset-password", "POST", {
+                "email": email,
+            });
+
             alert("비밀번호가 성공적으로 초기화되었습니다.\n이메일을 확인해주세요.");
             navigate("/login");
             window.location.reload();
-        })
-        .catch((error) => {
-            alert(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+        } catch(e) {
+            alert(e.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
             setIsWaiting(false);
-        });
+        }
     };
 
     return (

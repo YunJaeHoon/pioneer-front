@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import style from "./JoinPageStyle.module.css"
+import { apiRequest } from "../../util/apiUtil";
 
 import westernImage from "../../asset/join-image.svg";
 import showPasswordIcon from "../../asset/show-password-icon.svg";
@@ -9,7 +9,7 @@ import unshowPasswordIcon from "../../asset/unshow-password-icon.svg";
 import checkIcon from "../../asset/check-icon.svg";
 import xIcon from "../../asset/x-icon.svg";
 
-const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\[\]{};:'",.<>/?`~\\|]).{8,20}$/;
+const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\[\]{};:'",.<>/?`~\\|])[A-Za-z\d!@#$%^&*()\-_=+\[\]{};:'",.<>/?`~\\|]{8,20}$/;
 const NICKNAME_REGEX = /^[A-Za-z0-9가-힣]{2,12}$/;
 
 function JoinPage()
@@ -61,21 +61,18 @@ function JoinPage()
         setIsWaiting(true);
         setVerificationCode("");
 
-        axios.post(
-            "/user/send-verification-code",
-            {
+        try {
+            apiRequest("/user/send-verification-code", "POST", {
                 "email": email
-            }
-        ).then((response) => {
+            });
+
             setIsVerificationCodeSent(true);
             setVerificationCodeTimer(600);
-        })
-        .catch((error) => {
-            alert(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
-        })
-        .finally(() => {
+        } catch(e) {
+            alert(e.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+        } finally {
             setIsWaiting(false);
-        });
+        }
     }
 
     // 이메일 인증번호 확인
@@ -92,23 +89,20 @@ function JoinPage()
 
         setIsWaiting(true);
 
-        axios.post(
-            "/user/check-verification-code",
-            {
+        try {
+            apiRequest("/user/check-verification-code", "POST", {
                 "email": email,
                 "verificationCode": verificationCode
-            }
-        ).then((response) => {
+            });
+
             setIsVerificationCodeChecked(true);
             alert("이메일 인증번호가 확인되었습니다!");
-        })
-        .catch((error) => {
+        } catch(e) {
             setIsVerificationCodeSent(false);
-            alert(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
-        })
-        .finally(() => {
+            alert(e.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+        } finally {
             setIsWaiting(false);
-        });
+        }
     }
 
     // 닉네임 중복 확인
@@ -120,24 +114,19 @@ function JoinPage()
 
         setIsWaiting(true);
 
-        axios.get(
-            "/user/check-nickname-duplication",
-            {
-                params: {
-                    "nickname": nickname
-                }
-            }
-        ).then((response) => {
+        try {
+            apiRequest("/user/check-nickname-duplication", "GET", {
+                "nickname": nickname
+            });
+
             setIsNicknameDuplicationChecked(true);
             alert("사용 가능한 닉네임입니다!");
-        })
-        .catch((error) => {
+        } catch(e) {
             setIsNicknameDuplicationChecked(false);
-            alert(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
-        })
-        .finally(() => {
+            alert(e.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+        } finally {
             setIsWaiting(false);
-        });
+        }
     }
 
     // 회원가입
@@ -151,22 +140,20 @@ function JoinPage()
        
         setIsWaiting(true);
 
-        axios.post(
-            "/user/join",
-            {
+        try {
+            apiRequest("/user/join", "POST", {
                 "email": email,
                 "password": password,
                 "nickname": nickname
-            }
-        ).then((response) => {
+            });
+
             alert("회원가입에 성공하였습니다!");
             navigate("/login");
             window.location.reload();
-        })
-        .catch((error) => {
-            alert(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+        } catch(e) {
+            alert(e.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
             setIsWaiting(false);
-        })
+        }
     }
 
     // 초 단위를 타이머 형식으로 변경
