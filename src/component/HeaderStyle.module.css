@@ -1,6 +1,6 @@
 #main-container {
     width: 100%;
-    min-width: 1300px;
+    min-width: 1200px;
     height: 130px;
     position: fixed;
     z-index: 10;
@@ -59,7 +59,7 @@
     align-items: center;
     text-decoration: none;
 
-    margin-right: 60px;
+    margin-right: 45px;
     flex-shrink: 0;
 }
 

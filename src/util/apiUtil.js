@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // API 요청
-const sendApi = async (path, httpMethod, requestData) => {
+const apiRequest = async (path, httpMethod, requestData) => {
 
     let response = null;
 
@@ -97,4 +97,4 @@ const refreshAccessToken = async () => {
     return isSuccess;
 };
 
-export { sendApi, refreshAccessToken };
+export { apiRequest, refreshAccessToken };

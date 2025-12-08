@@ -6,7 +6,7 @@ import logo from "../asset/logo.svg";
 import loginIcon from "../asset/login-icon.svg";
 import linkLeftParentheses from "../asset/link-left-parentheses.svg";
 import linkRightParentheses from "../asset/link-right-parentheses.svg";
-import { sendApi } from "../util/apiUtil";
+import { apiRequest } from "../util/apiUtil";
 
 function Header()
 {
@@ -17,7 +17,7 @@ function Header()
     useEffect(() => {
         async function checkLogin() {
             try {
-                await sendApi("/test/role/user", "GET", null);
+                await apiRequest("/test/role/user", "GET", null);
                 setHasLogin(true);
             } catch {
                 setHasLogin(false);
