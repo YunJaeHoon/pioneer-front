@@ -20,7 +20,7 @@ function App()
                 console.log("백엔드 서버와 정상적으로 연결되었습니다.");
             } catch(e) {
                 console.log(e);
-                alert(e.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+                alert(e.response?.data?.message ?? "백엔드 서버와 연결 중 문제가 발생하였습니다.");
             }
         };
 

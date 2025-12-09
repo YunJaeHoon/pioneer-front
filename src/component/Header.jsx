@@ -4,21 +4,50 @@ import style from "./HeaderStyle.module.css"
 
 import logo from "../asset/logo.svg";
 import loginIcon from "../asset/login-icon.svg";
+import optionIcon from "../asset/option-icon.svg";
 import linkLeftParentheses from "../asset/link-left-parentheses.svg";
 import linkRightParentheses from "../asset/link-right-parentheses.svg";
 import { apiRequest } from "../util/apiUtil";
 
 function Header()
 {
+    // 프로필 이미지 불러오기
+    const profileImages = import.meta.glob("../asset/profile-image/*.svg", {
+        eager: true,
+        import: "default",
+    });
+
+    // (프로필 이미지 파일, 프로필 이미지 파일명) 매핑 객체로 생성
+    const profileImageMap = Object.fromEntries(
+        Object.entries(profileImages).map(([path, src]) => {
+            const fileName = path.split("/").pop().replace(".svg", ""); 
+            return [fileName, src];
+        })
+    );
+
     // state
-    const [hasLogin, setHasLogin] = useState(false);
+    const [hasLogin, setHasLogin] = useState(false);            // 로그인 여부
+    const [isProfileOpen, setIsProfileOpen] = useState(false);  // 프로필 클릭 여부
+    const [nickname, setNickname] = useState("");               // 닉네임
+    const [profileImage, setProfileImage] = useState("");       // 프로필 이미지
+    const [level, setLevel] = useState(0);                      // 현재 레벨
+    const [exp, setExp] = useState(0);                          // 현재 경험치
+    const [requiredExp, setRequiredExp] = useState(0);          // 레벨업에 필요한 총 경험치
 
     // 로그인 여부 확인
     useEffect(() => {
         async function checkLogin() {
             try {
-                await apiRequest("/test/role/user", "GET", null);
+                const userBasicInfo = await apiRequest("/user/basic-info", "GET", null);
+                console.log(userBasicInfo);
+
                 setHasLogin(true);
+                setNickname(userBasicInfo.nickname);
+                setProfileImage(userBasicInfo.profileImage)
+                setLevel(userBasicInfo.level);
+                setExp(userBasicInfo.exp);
+                setRequiredExp(userBasicInfo.requiredExp);
+
             } catch {
                 setHasLogin(false);
             }
@@ -31,7 +60,7 @@ function Header()
         <div id={style["main-container"]}>
             <div id={style["left-container"]}>
                 <Link to="/" id={style["logo"]}>
-                    <img src={logo} className={style["btn"]}/>
+                    <img src={logo} className={style["btn"]} alt="logo"/>
                 </Link>
                 <HeaderLink to="/fight" label="결투" />
                 <HeaderLink to="/weapons" label="무기고" />
@@ -44,8 +73,40 @@ function Header()
                         <Link to="/login">
                             <img src={loginIcon} id={style["login-icon"]} className={style["btn"]}/>
                         </Link>
+                    ) : !isProfileOpen ? (
+                        <img src={profileImageMap[profileImage]} id={style["profile-icon"]} alt="profile-icon" onClick={() => {setIsProfileOpen(!isProfileOpen)}}/>
                     ) : (
-                        <div>완료</div>
+                        <div id={style["profile-panel"]} onClick={() => {setIsProfileOpen(!isProfileOpen)}}>
+                            <div className={style["profile-row"]}>
+                                <img
+                                    src={profileImageMap[profileImage]}
+                                    className={style["profile-row-image"]}
+                                />
+                                <div className={style["profile-info"]}>
+                                    Lv.{level} {nickname}
+                                </div>
+                                <img
+                                    src={optionIcon}
+                                    className={style["profile-option-icon"]}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        console.log("옵션 아이콘 클릭됨!");
+                                    }}
+                                />
+                            </div>
+
+                            <div className={style["exp-row"]}>
+                                <div className={style["exp-bar"]}>
+                                    <div
+                                        className={style["exp-fill"]}
+                                        style={{ width: `${(exp / requiredExp) * 100}%` }}
+                                    ></div>
+                                </div>
+                                <div className={style["exp-text"]}>
+                                    {exp} / {requiredExp}
+                                </div>
+                            </div>
+                        </div>
                     )
                 }
             </div>
