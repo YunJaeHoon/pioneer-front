@@ -81,19 +81,48 @@
     opacity: 1;
 }
 
-#profile-icon {
+#profile-icon-container {
     width: 64px;
     height: 64px;
 
     position: absolute;
     top: 25px;
     right: 50px;
+
+    cursor: pointer;
+}
+
+#profile-icon {
+    width: 64px;
+    height: 64px;
+
+    position: absolute;
+    top: 0px;
+    right: 0px;
     
     cursor: pointer;
     transition: all 0.1s ease-in-out;
 
     border: 2px solid black;
     border-radius: 100%;
+}
+
+#profile-level-badge {
+    position: absolute;
+    bottom: -5px;
+    left: 38px;
+
+    background-color: #222;
+    white-space: nowrap;
+
+    font-family: "pioneer-content";
+    font-size: 11px;
+    font-weight: 300;
+    color: white;
+
+    padding: 2px 7px;
+    border: 2px solid black;
+    border-radius: 999px;
 }
 
 #profile-icon:hover {
@@ -128,7 +157,7 @@
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
-.profile-row {
+#profile-row {
     width: 100%;
 
     display: flex;
@@ -136,7 +165,14 @@
     align-items: center;
 }
 
-.profile-row-image {
+#profile-row-icon-container {
+    display: inline-block;
+    cursor: pointer;
+
+    position: relative;
+}
+
+#profile-row-icon {
     width: 50px;
     height: 50px;
 
@@ -144,16 +180,36 @@
     border-radius: 50%;
 }
 
-.profile-info {
-    flex: 1;
-    margin-left: 12px;
+#profile-row-level-badge {
+    position: absolute;
+    bottom: 0px;
+    left: 28px;
+
+    background-color: #222;
+    white-space: nowrap;
+
     font-family: "pioneer-content";
-    font-size: 18px;
-    font-weight: 500;
-    color: black;
+    font-size: 10px;
+    font-weight: 300;
+    color: white;
+
+    padding: 2px 7px;
+    border: 2px solid #000;
+    border-radius: 999px;
 }
 
-.profile-option-icon {
+#profile-row-nickname {
+    flex: 1;
+
+    font-family: "pioneer-content";
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+
+    margin-left: 22px;
+}
+
+#profile-option-icon {
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -162,11 +218,11 @@
     transition: opacity 0.15s ease;
 }
 
-.profile-option-icon:hover {
+#profile-option-icon:hover {
     opacity: 1;
 }
 
-.exp-row {
+#exp-row {
     width: 100%;
     
     display: flex;
@@ -175,7 +231,7 @@
     margin-top: 15px;
 }
 
-.exp-bar {
+#exp-bar {
     width: 100%;
     height: 14px;
     background-color: white;
@@ -183,12 +239,12 @@
     border: 2px solid black;
 }
 
-.exp-fill {
+#exp-fill {
     height: 100%;
     background-color: rgb(230, 54, 15);
 }
 
-.exp-text {
+#exp-text {
     font-family: "pioneer-content";
     font-size: 15px;
     font-weight: 500;

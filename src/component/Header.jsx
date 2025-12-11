@@ -74,20 +74,37 @@ function Header()
                             <img src={loginIcon} id={style["login-icon"]} className={style["btn"]}/>
                         </Link>
                     ) : !isProfileOpen ? (
-                        <img src={profileImageMap[profileImage]} id={style["profile-icon"]} alt="profile-icon" onClick={() => {setIsProfileOpen(!isProfileOpen)}}/>
+                        <div
+                            id={style["profile-icon-container"]}
+                            onClick={() => { setIsProfileOpen(!isProfileOpen); }}
+                        >
+                            <img
+                                src={profileImageMap[profileImage]}
+                                id={style["profile-icon"]}
+                                alt="profile-icon"
+                            />
+                            <div id={style["profile-level-badge"]}>
+                                {level}
+                            </div>
+                        </div>
                     ) : (
                         <div id={style["profile-panel"]} onClick={() => {setIsProfileOpen(!isProfileOpen)}}>
-                            <div className={style["profile-row"]}>
-                                <img
-                                    src={profileImageMap[profileImage]}
-                                    className={style["profile-row-image"]}
-                                />
-                                <div className={style["profile-info"]}>
-                                    Lv.{level} {nickname}
+                            <div id={style["profile-row"]}>
+                                <div id={style["profile-row-icon-container"]}>
+                                    <img
+                                        src={profileImageMap[profileImage]}
+                                        id={style["profile-row-icon"]}
+                                    />
+                                    <div id={style["profile-row-level-badge"]}>
+                                        {level}
+                                    </div>
+                                </div>
+                                <div id={style["profile-row-nickname"]}>
+                                    {nickname}
                                 </div>
                                 <img
                                     src={optionIcon}
-                                    className={style["profile-option-icon"]}
+                                    id={style["profile-option-icon"]}
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         console.log("옵션 아이콘 클릭됨!");
@@ -95,14 +112,14 @@ function Header()
                                 />
                             </div>
 
-                            <div className={style["exp-row"]}>
-                                <div className={style["exp-bar"]}>
+                            <div id={style["exp-row"]}>
+                                <div id={style["exp-bar"]}>
                                     <div
-                                        className={style["exp-fill"]}
+                                        id={style["exp-fill"]}
                                         style={{ width: `${(exp / requiredExp) * 100}%` }}
                                     ></div>
                                 </div>
-                                <div className={style["exp-text"]}>
+                                <div id={style["exp-text"]}>
                                     {exp} / {requiredExp}
                                 </div>
                             </div>
