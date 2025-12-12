@@ -52,7 +52,7 @@ function JoinPage()
     }, [verificationCodeTimer, isVerificationCodeSent, isVerificationCodeChecked]);
 
     // 이메일 인증번호 전송
-    function sendVerificationCode()
+    async function sendVerificationCode()
     {
         if(isWaiting) {
             return;
@@ -62,7 +62,7 @@ function JoinPage()
         setVerificationCode("");
 
         try {
-            apiRequest("/user/send-verification-code", "POST", {
+            await apiRequest("/user/send-verification-code", "POST", {
                 "email": email
             });
 
@@ -76,7 +76,7 @@ function JoinPage()
     }
 
     // 이메일 인증번호 확인
-    function checkVerificationCode()
+    async function checkVerificationCode()
     {
         if(isWaiting) {
             return;
@@ -90,7 +90,7 @@ function JoinPage()
         setIsWaiting(true);
 
         try {
-            apiRequest("/user/check-verification-code", "POST", {
+            await apiRequest("/user/check-verification-code", "POST", {
                 "email": email,
                 "verificationCode": verificationCode
             });
@@ -106,7 +106,7 @@ function JoinPage()
     }
 
     // 닉네임 중복 확인
-    function checkNicknameDuplication()
+    async function checkNicknameDuplication()
     {
         if(isWaiting) {
             return;
@@ -115,7 +115,7 @@ function JoinPage()
         setIsWaiting(true);
 
         try {
-            apiRequest("/user/check-nickname-duplication", "GET", {
+            await apiRequest("/user/check-nickname-duplication", "GET", {
                 "nickname": nickname
             });
 
@@ -130,7 +130,7 @@ function JoinPage()
     }
 
     // 회원가입
-    function join(e)
+    async function join(e)
     {
         e.preventDefault();
 
@@ -141,7 +141,7 @@ function JoinPage()
         setIsWaiting(true);
 
         try {
-            apiRequest("/user/join", "POST", {
+            await apiRequest("/user/join", "POST", {
                 "email": email,
                 "password": password,
                 "nickname": nickname

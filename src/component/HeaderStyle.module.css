@@ -39,7 +39,7 @@
     width: 65px;
     transition-duration: 0.1s;
 
-    margin-right: 50px;
+    margin: 26px 50px 0px 0px;
 }
 
 .btn {
@@ -81,6 +81,8 @@
     opacity: 1;
 }
 
+/* 프로필 패널 */
+
 #profile-icon-container {
     width: 64px;
     height: 64px;
@@ -107,6 +109,10 @@
     border-radius: 100%;
 }
 
+#profile-icon:hover {
+    filter: brightness(90%);
+}
+
 #profile-level-badge {
     position: absolute;
     bottom: -5px;
@@ -123,10 +129,6 @@
     padding: 2px 7px;
     border: 2px solid black;
     border-radius: 999px;
-}
-
-#profile-icon:hover {
-    filter: brightness(90%);
 }
 
 #profile-panel {
@@ -153,7 +155,7 @@
 }
 
 #profile-panel:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
@@ -210,8 +212,8 @@
 }
 
 #profile-option-icon {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     cursor: pointer;
 
     opacity: 0.8;
@@ -252,4 +254,327 @@
     color: black;
 
     margin-top: 5px;
+}
+
+/* 옵션 팝업창 */
+
+#option-overlay {
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.55);
+}
+
+#option-panel {
+    min-width: 1100px;
+    min-height: 650px;
+    background: white;
+
+    position: relative;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    justify-content: start;
+
+    border-radius: 16px;
+}
+
+#option-header {
+    width: 25%;
+    background: rgb(251, 247, 235);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+#option-header-title {
+    font-family: "pioneer-title";
+    font-size: 35px;
+    color: black;
+
+    margin-top: 45px;
+}
+
+#sub-option-bar {
+    width: 88%;
+
+    margin-top: 30px;
+}
+
+.sub-option-item {
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    transition: all 0.06s ease-in-out;
+
+    padding: 10px 12px;
+    border-radius: 5px;
+    margin: 4px 0px;
+}
+
+.sub-option-item:hover,
+.sub-option-item.selected {
+    background-color: rgb(229, 223, 206);
+}
+
+.sub-option-icon {
+    width: 25px;
+    width: 25px;
+
+    margin: 10px 0px;
+}
+
+.sub-option-title {
+    font-family: "pioneer-content";
+    font-size: 18px;
+    font-weight: 430;
+    color: rgb(30, 30, 30);
+
+    margin-left: 14px;
+}
+
+#option-content {
+    position: relative;
+    flex: 1;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    
+    padding: 70px 70px 0px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+#option-close-button {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+
+    position: absolute;
+    top: 30px;
+    right: 30px;
+
+    border: none;
+}
+
+.option-subtitle {
+    width: 95%;
+
+    font-family: "pioneer-content";
+    font-size: 18px;
+    font-weight: 500;
+    color: rgb(26, 26, 26);
+
+    padding: 0px 10px 10px 3px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+
+/* 옵션: 계정 */
+
+#option-profile-info-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    margin-top: 50px;
+    padding: 0px 20px;
+}
+
+#option-profile-icon-wrapper {
+    position: relative;
+}
+
+#option-profile-icon {
+    width: 80px;
+    height: 80px;
+    
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+    border: 2px solid black;
+    border-radius: 100%;
+}
+
+#option-profile-icon:hover {
+    filter: brightness(90%);
+}
+
+#option-profile-icon-hover-text {
+    width: 70px;
+    height: 22px;
+
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: black;
+    opacity: 0;
+
+    transition: all 0.05s ease-in-out;
+
+    font-family: "pionner-content";
+    font-size: 12px;
+    color: white;
+
+    border-radius: 6px;
+}
+
+#option-profile-icon:hover + #option-profile-icon-hover-text {
+    opacity: 1;
+}
+
+#option-nickname-input {
+    width: 250px;
+    height: 38px;
+    background-color: rgb(255, 255, 255);
+    
+    font-family: "pioneer-content";
+    font-size: 16px;
+    color: black;
+
+    padding: 10px 12px;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 4px;
+    margin-left: 35px;
+}
+
+#option-nickname-input:disabled {
+    background-color: rgb(244, 244, 244);
+}
+
+#option-change-nickname-button {
+    height: 38px;
+
+    cursor: pointer;
+    background-color: rgb(34, 34, 34);
+    
+    font-family: "pioneer-content";
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-left: 15px;
+}
+
+#option-change-nickname-button:hover {
+    color: rgb(234, 234, 234);
+}
+
+#logout-button {
+    width: 120px;
+    height: 40px;
+
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.05s ease-in-out;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "pioneer-content";
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(231, 15, 15);
+
+    padding: 10px 20px;
+    border: 1px solid rgb(231, 15, 15);
+    border-radius: 7px;
+    margin: 65px 0px 0px 15px;
+}
+
+#logout-button:hover {
+    background-color: rgb(246, 246, 246);
+}
+
+#profile-selector-overlay {
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.55);
+}
+
+#profile-selector-panel {
+    min-width: 500px;
+    min-height: 180px;
+    max-height: 400px;
+    background: rgb(249, 249, 249);
+
+    position: relative;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    justify-content: center;
+
+    padding: 65px 20px 20px;
+    border-radius: 16px;
+}
+
+#profile-selector-close {
+    width: 15px;
+    height: 15px;
+
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    
+    cursor: pointer;
+}
+
+#profile-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+#profile-grid-item {
+    width: 64px;
+    height: 64px;
+
+    cursor: pointer;
+    transition: transform 0.1s;
+
+    border: 2px solid black;
+}
+
+#profile-grid-item:hover {
+    transform: scale(1.1);
 }

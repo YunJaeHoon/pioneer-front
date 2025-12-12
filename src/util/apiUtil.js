@@ -23,6 +23,11 @@ const apiRequest = async (path, httpMethod, requestData) => {
                 headers: headers
             });
         }
+        else if(httpMethod === "PATCH") {
+            response = await axios.patch(path, requestData, {
+                headers: headers
+            });
+        }
 
         return response.data?.data;
 
@@ -50,6 +55,11 @@ const apiRequest = async (path, httpMethod, requestData) => {
                     }
                     else if(httpMethod === "POST") {
                         response = await axios.post(path, requestData, {
+                            headers: headers
+                        });
+                    }
+                    else if(httpMethod === "PATCH") {
+                        response = await axios.patch(path, requestData, {
                             headers: headers
                         });
                     }

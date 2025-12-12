@@ -15,7 +15,7 @@ function ForgotPasswordPage()
 
 
     // 비밀번호 초기화
-    function resetPassword(e)
+    async function resetPassword(e)
     {
         e.preventDefault();
 
@@ -26,7 +26,7 @@ function ForgotPasswordPage()
         setIsWaiting(true);
 
         try {
-            apiRequest("/user/reset-password", "POST", {
+            await apiRequest("/user/reset-password", "POST", {
                 "email": email,
             });
 
